@@ -61,4 +61,6 @@ The click interaction is handled entirely client-side in `app/javascript/schedul
 
 ## Hosted
 
-[Coming soon — deploying to Vercel]
+Deployed via [Railway](https://railway.app). Render was considered but no longer offers a free tier for Rails applications.
+
+[Coming soon]
