@@ -63,4 +63,4 @@ The click interaction is handled entirely client-side in `app/javascript/schedul
 
 Deployed via [Railway](https://railway.app). Render was considered but no longer offers a free tier for Rails applications.
 
-[Coming soon]
+https://terrier-scheduler-production.up.railway.app
