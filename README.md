@@ -39,7 +39,7 @@ bin/rake import:work_orders
 
 ### Approach
 
-The three data models — `Technician`, `Location`, and `WorkOrder` — map directly to the provided CSV files. `WorkOrder` is a join table between `Technician` and `Location`, with `time` (datetime), `duration` (integer, in minutes), and `price` (decimal) columns.
+The three data models — `Technician`, `Location`, and `WorkOrder` — pulled directly from the provided CSV files. `WorkOrder` is a join table between `Technician` and `Location`, with `time` (datetime), `duration` (integer, in minutes), and `price` (decimal) columns.
 
 The scheduling grid is rendered as a single page. Each technician gets a column rendered with `position: relative`, and work order blocks are positioned inside it using `position: absolute` with `top` and `height` calculated as percentages of the total day span (1 pixel per minute). This approach was necessary because a standard HTML table layout cannot represent arbitrary time durations and positions accurately.
 
@@ -57,7 +57,6 @@ The click interaction is handled entirely client-side in `app/javascript/schedul
 - Drag-and-drop rescheduling of work orders directly on the grid
 - Support for multi-day views with a date picker
 - Ability to create, edit, and delete work orders and technicians from the UI
-- Real-time updates using Hotwire/ActionCable for dispatchers working simultaneously
 - Color-coding work orders by status, technician, or service type
 
 ## Hosted
