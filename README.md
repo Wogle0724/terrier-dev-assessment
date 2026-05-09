@@ -4,7 +4,7 @@ A Ruby on Rails scheduling application for pest control work orders. Displays te
 
 ## Requirements
 
-- Ruby 3.2.2
+- Ruby 3.4.3
 - Rails 8.0.5
 - SQLite3
 
