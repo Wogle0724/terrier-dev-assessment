@@ -2,5 +2,5 @@
 buildCommand = "bundle install && bin/rails db:migrate:all && bin/rake import:all"
 
 [deploy]
-startCommand = "bin/rails server -b 0.0.0.0 -p $PORT"
+startCommand = "sh -c 'bin/rails server -b 0.0.0.0 -p $PORT'"
 healthcheckPath = "/up"
