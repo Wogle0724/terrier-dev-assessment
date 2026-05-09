@@ -51,16 +51,9 @@ The click interaction is handled entirely client-side in `app/javascript/schedul
 
 - **Grid line alignment**: The day view starts at 5:30 AM (to give breathing room above the first 6:00 AM order), which means hourly grid lines can't simply repeat from the top. This was solved with `background-position` offset on the repeating CSS gradient.
 - **Overlapping blocks**: The assessment data includes work orders that overlap within the same technician column. A layout pass was added server-side to detect overlaps and assign each block a proportional horizontal slice.
-
 ### Possible Future Improvements
 
 - Drag-and-drop rescheduling of work orders directly on the grid
 - Support for multi-day views with a date picker
 - Ability to create, edit, and delete work orders and technicians from the UI
 - Color-coding work orders by status, technician, or service type
-
-## Hosted
-
-Deployed via [Railway](https://railway.app). Render was considered but no longer offers a free tier for Rails applications.
-
-https://terrier-scheduler-production.up.railway.app
