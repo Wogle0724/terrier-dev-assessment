@@ -1,0 +1,127 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+  background: #f5f5f5;
+}
+
+/* ── Outer wrapper ─────────────────────────────────── */
+.schedule-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ── Header row (technician names) ────────────────── */
+.schedule-header {
+  display: flex;
+  border-bottom: 2px solid #ccc;
+  background: #fff;
+  flex-shrink: 0;
+}
+
+.schedule-header .time-gutter {
+  width: 64px;
+  flex-shrink: 0;
+  height: 40px;
+}
+
+.tech-header {
+  flex: 1;
+  padding: 10px 6px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-align: center;
+  border-left: 1px solid #ccc;
+  background: #1a3a5c;
+  color: #fff;
+  line-height: 1;
+}
+
+/* ── Scrollable body ───────────────────────────────── */
+.schedule-body {
+  display: flex;
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* ── Time gutter (hour labels) ─────────────────────── */
+.time-gutter {
+  width: 64px;
+  flex-shrink: 0;
+  position: relative;
+  /* 720px = 1px per minute × 720 min (5:30 AM – 5:30 PM) */
+  height: 720px;
+  background: #fff;
+  border-right: 1px solid #ccc;
+}
+
+.hour-label {
+  position: absolute;
+  right: 6px;
+  transform: translateY(-50%);
+  font-size: 0.72rem;
+  color: #666;
+  white-space: nowrap;
+}
+
+/* ── Technician columns ────────────────────────────── */
+.tech-column {
+  flex: 1;
+  position: relative;
+  height: 720px;
+  border-left: 1px solid #ccc;
+  cursor: crosshair;
+  /* Hour lines every 60px, offset 30px so they land on whole hours (day starts at :30) */
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 59px,
+    #e0e0e0 59px,
+    #e0e0e0 60px
+  );
+  background-position: 0 30px;
+}
+
+/* ── Work order blocks ─────────────────────────────── */
+.work-order-block {
+  position: absolute;
+  background: #2e7d9e;
+  color: #fff;
+  border-radius: 4px;
+  padding: 4px 6px;
+  overflow: hidden;
+  cursor: default;
+  font-size: 0.72rem;
+  line-height: 1.4;
+  border: 1px solid rgba(0,0,0,0.15);
+  min-height: 24px;
+}
+
+.wo-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.wo-location {
+  font-weight: 600;
+  min-width: 0;
+  word-break: break-word;
+}
+
+.wo-price {
+  flex-shrink: 0;
+  opacity: 0.9;
+}
+
+.wo-time {
+  display: block;
+  opacity: 0.9;
+}

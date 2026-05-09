@@ -1,0 +1,54 @@
+<div class="schedule-wrapper">
+  <div class="schedule-header">
+    <div class="time-gutter"></div>
+    <% @technicians.each do |tech| %>
+      <div class="tech-header"><%= tech.name %></div>
+    <% end %>
+  </div>
+
+  <div class="schedule-body">
+    <div class="time-gutter">
+      <% @hours.each do |hour| %>
+        <div class="hour-label" style="top: <%= ((hour * 60 - @day_start).to_f / @day_span * 100).round(4) %>%">
+          <%= Time.new(2000, 1, 1, hour).strftime("%-I %p") %>
+        </div>
+      <% end %>
+    </div>
+
+    <% @technicians.each do |tech| %>
+      <%
+        orders_json = tech.work_orders.map do |wo|
+          start_min = wo.time.hour * 60 + wo.time.min
+          { start_min: start_min, end_min: start_min + wo.duration }
+        end.to_json
+        layout = compute_layout(tech.work_orders)
+      %>
+      <div class="tech-column"
+           data-orders="<%= html_escape(orders_json) %>"
+           data-day-start="<%= @day_start %>"
+           data-day-span="<%= @day_span %>">
+
+        <% tech.work_orders.each do |wo| %>
+          <%
+            start_min  = wo.time.hour * 60 + wo.time.min
+            top_pct    = ((start_min - @day_start).to_f / @day_span * 100).round(4)
+            height_pct = (wo.duration.to_f / @day_span * 100).round(4)
+            l          = layout[wo.id]
+            left_pct   = (l[:slot].to_f / l[:total] * 100).round(4)
+            width_pct  = (1.0 / l[:total] * 100).round(4)
+          %>
+          <div class="work-order-block"
+               style="top: <%= top_pct %>%; height: <%= height_pct %>%; left: calc(<%= left_pct %>% + 3px); width: calc(<%= width_pct %>% - 6px);">
+            <div class="wo-top-row">
+              <span class="wo-location"><%= wo.location.name %>, <%= wo.location.city %></span>
+              <span class="wo-price">$<%= wo.price.to_i %></span>
+            </div>
+            <span class="wo-time"><%= wo.time.strftime("%-I:%M %p") %></span>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<%= javascript_import_module_tag "schedule" %>
